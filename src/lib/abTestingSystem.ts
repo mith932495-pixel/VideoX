@@ -349,8 +349,8 @@ export class ABTestingSystemService {
             conversion_rate: conversionRate,
             conversion_count: conversionCount,
             metrics,
-            engagement_metrics,
-            revenue_metrics
+            engagement_metrics: engagementMetrics,
+            revenue_metrics: revenueMetrics
           }
         })
       )
