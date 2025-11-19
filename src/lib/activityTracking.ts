@@ -187,10 +187,9 @@ export class ActivityTrackingService {
   }
 
   // Track API usage
-  static async trackApiUsage(endpoint: string, method: string, statusCode: number, responseTime?: number, userId?: string) {
+  static async trackApiUsage(endpoint: string, method: string, statusCode: number, responseTime?: number) {
     try {
       await this.trackActivity({
-        user_id: userId || this.userId,
         activity_type: 'api_usage',
         activity_data: {
           endpoint: endpoint,
