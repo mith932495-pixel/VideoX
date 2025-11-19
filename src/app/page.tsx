@@ -313,10 +313,10 @@ export default function LandingPage() {
                 transition={{ duration: 1, delay: 0.4 }}
               >
                 <span className="bg-gradient-to-r from-white via-text-primary to-text-secondary bg-clip-text text-transparent block mb-2">
-                  Transform Videos
+                  Enhance Your Videos
                 </span>
                 <span className="bg-gradient-to-r from-accent-orange via-pink-500 to-accent-gold bg-clip-text text-transparent block animate-pulse">
-                  to Hollywood Quality
+                  to Cinematic Quality
                 </span>
               </motion.h1>
 
