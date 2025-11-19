@@ -12,6 +12,7 @@ export default function LandingPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollYProgress, setScrollYProgress] = useState(0)
   const [particles, setParticles] = useState<any[]>([])
+  const [hasMounted, setHasMounted] = useState(false)
 
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
@@ -19,6 +20,7 @@ export default function LandingPage() {
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0])
 
   useEffect(() => {
+    setHasMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
       setScrollYProgress(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight))
