@@ -180,10 +180,10 @@ export default function LandingPage() {
               ))}
               <div className="flex items-center space-x-4">
                 <Link href="/login" className="text-text-secondary hover:text-text-primary transition-colors">
-                  Sign In
+                  Log In
                 </Link>
-                <Link href="/enhance" className="btn-cinematic px-6 py-2 rounded-full text-white font-medium">
-                  Start Free
+                <Link href="/signup" className="btn-cinematic px-6 py-2 rounded-full text-white font-medium">
+                  Sign Up
                 </Link>
               </div>
             </div>
