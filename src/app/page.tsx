@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, MouseEvent } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Play, Upload, Zap, Shield, Star, ArrowRight, Check, Menu, X, ChevronDown, Sparkles, Film, TrendingUp, Award, Users, Clock, Globe, Headphones, Camera, Palette, Cpu, BarChart3, Globe2, ShieldCheck, Lightbulb, Rocket } from 'lucide-react'
 import Link from 'next/link'
