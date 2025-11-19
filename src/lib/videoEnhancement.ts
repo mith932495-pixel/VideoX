@@ -103,7 +103,7 @@ export class VideoEnhancer {
   private async pollJobStatus(
     jobId: string,
     onProgress?: (progress: ProcessingProgress) => void
-  ): Promise<{ url: string; metadata: any }> {
+  ): Promise<{ enhancedUrl: string; metadata: any }> {
     const maxPollingTime = 30 * 60 * 1000 // 30 minutes
     const pollInterval = 2000 // 2 seconds
     const startTime = Date.now()
