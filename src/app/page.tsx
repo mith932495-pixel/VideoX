@@ -616,15 +616,15 @@ export default function LandingPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {pricingPlans.map((plan, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className={`relative ${plan.popular ? 'scale-105' : ''}`}
+                transition={{ delay: index * 0.15 }}
+                className={`relative ${plan.popular ? 'scale-105' : ''} ${plan.highlight ? 'border-2 border-accent-gold' : ''} rounded-2xl`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -633,15 +633,15 @@ export default function LandingPage() {
                     </div>
                   </div>
                 )}
-                <div className={`card-cinematic p-8 h-full ${plan.popular ? 'border-2 border-accent-orange' : ''}`}>
+                <div className={`card-cinematic p-8 h-full ${plan.highlight ? 'bg-secondary' : ''} rounded-2xl`}>
                   <h3 className="text-2xl font-bold mb-4 text-text-primary">{plan.name}</h3>
                   <div className="mb-6">
                     <span className="text-4xl font-bold text-text-primary">${plan.price}</span>
-                    <span className="text-text-secondary">/month</span>
+                    <span className="text-text-secondary">{plan.name === 'Starter' ? '/ 3 free credits' : '/ one-time'}</span>
                   </div>
                   <div className="mb-8">
                     <div className="text-3xl font-bold text-accent-orange mb-2">{plan.credits}</div>
-                    <div className="text-text-secondary">Credits per month</div>
+                    <div className="text-text-secondary">Credits</div>
                   </div>
                   <ul className="space-y-4 mb-8">
                     {plan.features.map((feature, i) => (
