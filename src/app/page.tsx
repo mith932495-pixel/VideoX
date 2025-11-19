@@ -215,10 +215,10 @@ export default function LandingPage() {
             className="md:hidden fixed top-16 left-0 right-0 glass z-40"
           >
             <div className="p-4 space-y-4">
-              {['Features', 'Showcase', 'Pricing', 'About'].map((item) => (
+              {['Features', 'Pricing', 'Docs'].map((item) => (
                 <Link
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={item === 'Docs' ? '/docs' : `#${item.toLowerCase()}`}
                   className="block text-text-secondary hover:text-text-primary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
