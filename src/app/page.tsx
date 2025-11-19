@@ -117,26 +117,37 @@ export default function LandingPage() {
 
   const pricingPlans = [
     {
-      name: "Creator",
+      name: "Starter",
+      price: "0",
+      credits: 3,
+      features: ["3 Free Credits", "720p Output", "2-min Video Length", "Watermarked Videos"],
+      popular: false,
+      highlight: true,
+    },
+    {
+      name: "Creator Pack",
       price: "9",
       credits: 10,
-      features: ["4K Enhancement", "Basic AI Tools", "10GB Storage", "Email Support"],
-      popular: false
+      features: ["4K Enhancement", "No Watermark", "10GB Storage", "Email Support"],
+      popular: false,
+      highlight: false,
     },
     {
-      name: "Professional",
+      name: "Pro Pack",
       price: "39",
       credits: 50,
-      features: ["8K Enhancement", "Advanced AI", "100GB Storage", "Priority Support", "API Access"],
-      popular: true
+      features: ["8K Enhancement", "Advanced AI Tools", "50GB Storage", "Priority Support"],
+      popular: true,
+      highlight: false,
     },
     {
-      name: "Enterprise",
-      price: "99",
-      credits: 150,
-      features: ["Unlimited Enhancement", "Custom Models", "1TB Storage", "24/7 Support", "White Label"],
-      popular: false
-    }
+      name: "Studio Pack",
+      price: "69",
+      credits: 100,
+      features: ["8K+ Enhancement", "All AI Tools", "100GB Storage", "Dedicated Support"],
+      popular: false,
+      highlight: false,
+    },
   ]
 
   return (
