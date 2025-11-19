@@ -666,7 +666,7 @@ export class ABTestingSystemService {
   private static async deployTestVariants(test: ABTest): Promise<void> {
     // In a real implementation, this would deploy the test variants to the frontend
     // This could involve setting feature flags, updating CDN configurations, etc.
-    console.log(`Deploying test variants for test: ${test.name}`)
+    console.log(`Deploying test variants for test: ${test.test_name}`)
   }
 
   private static async calculateVariantMetrics(variantId: string, testId: string, participantCount: number): Promise<Record<string, any>> {
