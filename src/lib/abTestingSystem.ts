@@ -522,7 +522,7 @@ export class ABTestingSystemService {
 
       // Calculate current performance for each variant
       const variantPerformances = await Promise.all(
-        test.variants.map(async (variant) => {
+        test.variants.map(async (variant: ABTestVariant) => {
           const performance = await this.calculateVariantPerformance(variant.id, testId)
           return { variant_id: variant.id, performance }
         })
