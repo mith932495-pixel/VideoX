@@ -267,13 +267,13 @@ export default function LandingPage() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 53, 0.1), transparent 40%)`
+            background: hasMounted ? `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 107, 53, 0.1), transparent 40%)` : 'none'
           }}
         />
 
         {/* Floating Particles */}
         <div className="absolute inset-0 overflow-hidden">
-            {particles.map((particle, i) => (
+            {hasMounted && particles.map((particle, i) => (
                 <motion.div
                 key={i}
                 className="absolute w-2 h-2 bg-gradient-to-r from-accent-orange to-accent-gold rounded-full"
