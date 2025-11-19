@@ -479,10 +479,10 @@ export class EnterpriseAnalyticsService {
     trends: Array<{ metric: string; trend: 'up' | 'down' | 'stable'; significance: number }>
   }> {
     try {
-      const insights = []
-      const recommendations = []
-      const confidenceScores = []
-      const trends = []
+      const insights: string[] = []
+      const recommendations: string[] = []
+      const confidenceScores: number[] = []
+      const trends: { metric: string; trend: 'up' | 'down' | 'stable'; significance: number }[] = []
 
       // Analyze data patterns and generate insights
       switch (dataType) {
