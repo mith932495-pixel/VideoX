@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Settings, Download, Share2, Play, Pause, RotateCcw, Zap } from 'lucide-react'
+import { ArrowLeft, Settings, Download, Share2, RotateCcw, Zap, Upload } from 'lucide-react'
 import Link from 'next/link'
 import UploadZone from '@/components/UploadZone'
 import { useAuth } from '@/lib/auth'
