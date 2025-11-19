@@ -764,19 +764,19 @@ export class EnterpriseAnalyticsService {
 
   private static async calculateConversionRate(startDate: string, endDate: string): Promise<number> {
     try {
-      const { data: conversionEvents } = await supabase
+      const { data: conversionEventsActivities } = await supabase
         .from('user_activities')
         .select('user_id')
         .eq('activity_type', 'conversion')
         .gte('created_at', startDate)
-        .lte('created_at', endDate)
-        .distinct('user_id')
+        .lte('created_at', endDate);
+      const conversionEvents = conversionEventsActivities ? [...new Set(conversionEventsActivities.map(a => a.user_id))] : null;
 
-      const { data: totalUsers } = await supabase
+      const { data: totalUsersActivities } = await supabase
         .from('users')
         .select('id')
-        .lte('created_at', endDate)
-        .distinct()
+        .lte('created_at', endDate);
+      const totalUsers = totalUsersActivities ? [...new Set(totalUsersActivities.map(a => a.id))] : null;
 
       if (!totalUsers || totalUsers.length === 0) return 0
 
