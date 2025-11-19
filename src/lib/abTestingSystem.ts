@@ -416,7 +416,7 @@ export class ABTestingSystemService {
 
       // Analyze each step
       const stepAnalysis = await Promise.all(
-        funnel.steps.map(async (step) => {
+        funnel.steps.map(async (step: ConversionStep) => {
           const stepData = await this.analyzeConversionStep(step, startDate, endDate)
           return {
             step,
