@@ -247,7 +247,7 @@ export class ABTestingSystemService {
         .single()
 
       if (assignment) {
-        const variant = test.variants.find(v => v.id === assignment.variant_id)
+        const variant = test.variants.find((v: ABTestVariant) => v.id === assignment.variant_id)
         return variant ? { variant, isFirstVisit: false, testInfo: test } : null
       }
 
