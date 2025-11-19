@@ -337,11 +337,11 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.8 }}
               >
-                <Link href="/enhance" className="group btn-cinematic px-10 py-5 rounded-full text-xl font-bold text-white relative overflow-hidden">
+                <Link href="/signup" className="group btn-cinematic px-10 py-5 rounded-full text-xl font-bold text-white relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-accent-orange to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10 flex items-center">
                     <Upload className="inline-block w-6 h-6 mr-3 group-hover:translate-y-1 transition-transform" />
-                    <span>Start Enhancing Now</span>
+                    <span>Start Your Free Trial</span>
                     <ArrowRight className="inline-block w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
                   </div>
                 </Link>
@@ -350,7 +350,7 @@ export default function LandingPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-accent-orange to-accent-gold opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                   <div className="relative z-10 flex items-center">
                     <Play className="inline-block w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                    <span>Watch Demo</span>
+                    <span>See It In Action</span>
                   </div>
                 </button>
               </motion.div>
