@@ -328,7 +328,7 @@ export class ABTestingSystemService {
 
       // Calculate results for each variant
       const variantsResults = await Promise.all(
-        test.variants.map(async (variant) => {
+        test.variants.map(async (variant: ABTestVariant) => {
           const participantCount = assignments?.filter(a => a.variant_id === variant.id).length || 0
           const variantConversions = conversions?.filter(c => c.variant_id === variant.id) || []
           const conversionCount = variantConversions.length
