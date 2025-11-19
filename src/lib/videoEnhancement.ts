@@ -134,7 +134,7 @@ export class VideoEnhancer {
 
       if (job.status === 'completed' && job.output) {
         return {
-          url: job.output.video_url,
+          enhancedUrl: job.output.video_url,
           metadata: job.output.metadata
         }
       }
