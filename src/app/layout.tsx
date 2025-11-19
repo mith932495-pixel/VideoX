@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "@/lib/auth";
+import Notifications from "@/components/Notifications";
 import "./globals.css";
 
 const inter = Inter({
@@ -61,9 +63,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} antialiased`}>
-        <div className="min-h-screen bg-primary text-text-primary">
-          {children}
-        </div>
+        <AuthProvider>
+          <div className="min-h-screen bg-primary text-text-primary">
+            {children}
+            <Notifications />
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
