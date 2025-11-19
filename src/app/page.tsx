@@ -161,10 +161,10 @@ export default function LandingPage() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {['Features', 'Showcase', 'Pricing', 'About'].map((item) => (
+              {['Features', 'Pricing', 'Docs'].map((item) => (
                 <Link
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={item === 'Docs' ? '/docs' : `#${item.toLowerCase()}`}
                   className={`relative px-2 py-1 transition-all duration-300 hover:text-accent-orange ${
                     activeSection === item.toLowerCase() ? 'text-accent-orange' : 'text-text-secondary'
                   }`}
