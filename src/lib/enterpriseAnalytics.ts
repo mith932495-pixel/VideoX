@@ -726,12 +726,12 @@ export class EnterpriseAnalyticsService {
 
       if (!users || users.length === 0) return 0
 
-      const { data: activeUsers } = await supabase
+      const { data: activeUserActivities } = await supabase
         .from('user_activities')
         .select('user_id')
         .gte('created_at', startDate)
-        .lte('created_at', endDate)
-        .distinct('user_id')
+        .lte('created_at', endDate);
+      const activeUsers = activeUserActivities ? [...new Set(activeUserActivities.map(a => a.user_id))] : null;
 
       return activeUsers ? (activeUsers.length / users.length) * 100 : 0
     } catch (error) {
