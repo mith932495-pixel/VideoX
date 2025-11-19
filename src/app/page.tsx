@@ -11,6 +11,7 @@ export default function LandingPage() {
   const [activeSection, setActiveSection] = useState('hero')
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollYProgress, setScrollYProgress] = useState(0)
+  const [particles, setParticles] = useState<any[]>([])
 
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
@@ -22,7 +23,6 @@ export default function LandingPage() {
       setIsScrolled(window.scrollY > 20)
       setScrollYProgress(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight))
 
-      // Determine active section
       const sections = ['hero', 'features', 'stats', 'showcase', 'testimonials', 'pricing']
       const scrollPosition = window.scrollY + 100
 
@@ -38,9 +38,19 @@ export default function LandingPage() {
       }
     }
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
+
+    const newParticles = [...Array(30)].map(() => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        scale: Math.random() * 0.5 + 0.5,
+        duration: Math.random() * 20 + 10,
+        opacity: Math.random() * 0.5 + 0.1
+      }));
+    setParticles(newParticles);
+
 
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('mousemove', handleMouseMove)
@@ -148,7 +158,7 @@ export default function LandingPage() {
       />
 
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'glass-heavy py-3' : 'bg-transparent py-6'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'glass-heavy py-3' : 'bg-primary md:bg-transparent py-6'}`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between">
             <motion.div
@@ -260,34 +270,32 @@ export default function LandingPage() {
         />
 
         {/* Floating Particles */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-gradient-to-r from-accent-orange to-accent-gold rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                scale: Math.random() * 0.5 + 0.5
-              }}
-              animate={{
-                y: [0, -Math.random() * 1000 - 500],
-                x: [0, (Math.random() - 0.5) * 200],
-                rotate: [0, 360],
-                scale: [1, Math.random() * 1.5 + 0.5]
-              }}
-              transition={{
-                duration: Math.random() * 20 + 10,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.5 + 0.1
-              }}
-            />
-          ))}
+        <div className="absolute inset-0 overflow-hidden">
+            {particles.map((particle, i) => (
+                <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-gradient-to-r from-accent-orange to-accent-gold rounded-full"
+                initial={{
+                    x: particle.x,
+                    y: particle.y,
+                    scale: particle.scale
+                }}
+                animate={{
+                    y: [particle.y, particle.y - 1000],
+                    x: [particle.x, particle.x + (Math.random() - 0.5) * 200],
+                    rotate: [0, 360],
+                    scale: [particle.scale, particle.scale * (Math.random() * 1.5 + 0.5)]
+                }}
+                transition={{
+                    duration: particle.duration,
+                    repeat: Infinity,
+                    ease: "linear"
+                }}
+                style={{
+                    opacity: particle.opacity
+                }}
+                />
+            ))}
         </div>
 
         <div className="relative z-10 w-full">
@@ -300,14 +308,14 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <div className="inline-flex items-center px-6 py-3 rounded-full glass mb-8 text-sm font-medium group cursor-pointer">
+              <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 rounded-full glass mb-8 text-sm font-medium group cursor-pointer">
                 <Rocket className="w-5 h-5 mr-3 text-accent-orange group-hover:animate-pulse" />
-                <span className="text-text-secondary">Transform your videos to cinematic quality</span>
+                <span className="text-text-secondary text-xs sm:text-sm">Transform your videos to cinematic quality</span>
                 <Sparkles className="w-5 h-5 ml-3 text-accent-orange animate-spin" />
               </div>
 
               <motion.h1
-                className="text-6xl md:text-8xl lg:text-9xl font-black mb-6 leading-tight"
+                className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.4 }}
@@ -321,7 +329,7 @@ export default function LandingPage() {
               </motion.h1>
 
               <motion.p
-                className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-12 max-w-4xl mx-auto leading-relaxed font-light"
+                className="text-lg sm:text-xl md:text-2xl text-text-secondary mb-12 max-w-4xl mx-auto leading-relaxed font-light"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.6 }}
@@ -337,7 +345,7 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.8 }}
               >
-                <Link href="/enhance" className="group btn-cinematic px-10 py-5 rounded-full text-xl font-bold text-white relative overflow-hidden">
+                <Link href="/enhance" className="group btn-cinematic px-8 py-4 text-lg sm:px-10 sm:py-5 sm:text-xl rounded-full font-bold text-white relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-accent-orange to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10 flex items-center">
                     <Upload className="inline-block w-6 h-6 mr-3 group-hover:translate-y-1 transition-transform" />
@@ -346,7 +354,7 @@ export default function LandingPage() {
                   </div>
                 </Link>
 
-                <button className="group glass px-10 py-5 rounded-full text-xl font-bold text-text-primary hover:bg-secondary transition-all relative overflow-hidden">
+                <button className="group glass px-8 py-4 text-lg sm:px-10 sm:py-5 sm:text-xl rounded-full font-bold text-text-primary hover:bg-secondary transition-all relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-accent-orange to-accent-gold opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                   <div className="relative z-10 flex items-center">
                     <Play className="inline-block w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
@@ -402,12 +410,12 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-text-primary to-text-secondary bg-clip-text text-transparent">
                 Why Choose VideoX?
               </span>
             </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto">
               Experience the future of video enhancement with our cutting-edge AI technology
               and Hollywood-grade processing algorithms
             </p>
@@ -493,12 +501,12 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-accent-orange to-pink-500 bg-clip-text text-transparent">
                 See the Difference
               </span>
             </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto">
               Real examples of how VideoX transforms ordinary videos into stunning 8K masterpieces
             </p>
           </motion.div>
@@ -517,11 +525,11 @@ export default function LandingPage() {
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="mb-4">
-                        <span className="text-6xl font-bold text-text-primary/30">{item.before}</span>
-                        <ArrowRight className="inline-block w-8 h-8 mx-4 text-accent-orange" />
-                        <span className="text-6xl font-bold text-accent-orange">{item.after}</span>
+                        <span className="text-5xl sm:text-6xl font-bold text-text-primary/30">{item.before}</span>
+                        <ArrowRight className="inline-block w-6 sm:w-8 h-6 sm:h-8 mx-4 text-accent-orange" />
+                        <span className="text-5xl sm:text-6xl font-bold text-accent-orange">{item.after}</span>
                       </div>
-                      <div className="text-accent-orange font-bold text-xl">
+                      <div className="text-accent-orange font-bold text-lg sm:text-xl">
                         {item.improvement} Improvement
                       </div>
                       <div className="text-text-secondary text-sm mt-2">
@@ -545,12 +553,12 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-text-primary to-text-secondary bg-clip-text text-transparent">
                 Loved by Creators
               </span>
             </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto">
               Join thousands of professionals who trust VideoX for their video enhancement needs
             </p>
           </motion.div>
@@ -595,12 +603,12 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-accent-orange to-pink-500 bg-clip-text text-transparent">
                 Simple, Transparent Pricing
               </span>
             </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto">
               Choose the perfect plan for your needs. Start with 3 free credits on us!
             </p>
           </motion.div>
@@ -613,7 +621,7 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className={`relative ${plan.popular ? 'scale-105' : ''}`}
+                className={`relative transform ${plan.popular ? 'md:scale-105' : ''}`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
