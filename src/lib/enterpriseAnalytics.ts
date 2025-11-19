@@ -240,11 +240,11 @@ export class EnterpriseAnalyticsService {
         .from('users')
         .select('id', { count: 'exact' })
 
-      const { data: activeUsers } = await supabase
+      const { data: activeUserActivities } = await supabase
         .from('user_activities')
         .select('user_id')
-        .gte('created_at', startDate)
-        .distinct('user_id')
+        .gte('created_at', startDate);
+      const activeUsers = activeUserActivities ? [...new Set(activeUserActivities.map(a => a.user_id))] : null;
 
       const { data: newUsers } = await supabase
         .from('users')
@@ -597,11 +597,11 @@ export class EnterpriseAnalyticsService {
       const mrr = monthlyRevenue
 
       // Calculate ARPU
-      const { data: activeUsers } = await supabase
+      const { data: activeUserActivities } = await supabase
         .from('user_activities')
         .select('user_id')
-        .gte('created_at', startDate)
-        .distinct('user_id')
+        .gte('created_at', startDate);
+      const activeUsers = activeUserActivities ? [...new Set(activeUserActivities.map(a => a.user_id))] : null;
 
       const arpu = activeUsers ? totalRevenue / activeUsers.length : 0
 
