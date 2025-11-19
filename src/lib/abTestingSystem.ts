@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { supabase } from './supabase'
 import { ActivityTrackingService } from './activityTracking'
 import { UserProfilingService } from './userProfiling'
