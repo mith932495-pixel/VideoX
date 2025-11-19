@@ -227,10 +227,10 @@ export default function LandingPage() {
               ))}
               <div className="pt-4 border-t border-secondary">
                 <Link href="/login" className="block text-text-secondary hover:text-text-primary transition-colors mb-4">
-                  Sign In
+                  Log In
                 </Link>
-                <Link href="/enhance" className="btn-cinematic px-6 py-2 rounded-full text-white font-medium text-center">
-                  Start Free
+                <Link href="/signup" className="btn-cinematic px-6 py-2 rounded-full text-white font-medium text-center">
+                  Sign Up
                 </Link>
               </div>
             </div>
