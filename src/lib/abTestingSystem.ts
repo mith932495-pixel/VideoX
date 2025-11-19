@@ -291,7 +291,14 @@ export class ABTestingSystemService {
         })
 
       // Also track in main activity system
-      await ActivityTrackingService.trackABTest(testId, assignment.variant_id, true)
+      await ActivityTrackingService.trackActivity({
+        activity_type: 'ab_test',
+        activity_data: {
+          test_name: testId,
+          variant: assignment.variant_id,
+          converted: true
+        }
+      })
     } catch (error) {
       console.error('Failed to track conversion:', error)
     }
