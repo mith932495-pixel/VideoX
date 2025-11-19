@@ -343,28 +343,6 @@ export class EnterpriseAnalyticsService {
     }
   }
 
-  // Get performance analytics
-  static async getPerformanceAnalytics(dateRange?: { start: string; end: string }): Promise<PerformanceAnalytics> {
-    try {
-      // System performance metrics
-      const systemPerformance = await this.getSystemPerformanceMetrics()
-
-      // User experience metrics
-      const userExperience = await this.getUserExperienceMetrics()
-
-      // Resource utilization
-      const resourceUtilization = await this.getResourceUtilizationMetrics()
-
-      return {
-        system_performance: systemPerformance,
-        user_experience: userExperience,
-        resource_utilization: resourceUtilization
-      }
-    } catch (error) {
-      console.error('Failed to get performance analytics:', error)
-      throw new Error('Unable to retrieve performance analytics')
-    }
-  }
 
   // Create custom dashboard
   static async createDashboard(dashboard: Omit<AnalyticsDashboard, 'id' | 'created_at' | 'updated_at'>): Promise<AnalyticsDashboard> {
