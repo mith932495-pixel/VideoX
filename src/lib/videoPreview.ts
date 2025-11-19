@@ -118,7 +118,7 @@ export class VideoPreviewProcessor {
 
       // Read the processed file
       const processedData = await this.ffmpeg!.readFile(outputFileName)
-      const processedBlob = new Blob([processedData], { type: 'video/mp4' })
+      const processedBlob = new Blob([processedData as Uint8Array], { type: 'video/mp4' })
       const previewUrl = URL.createObjectURL(processedBlob)
 
       // Cleanup
