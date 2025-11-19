@@ -232,11 +232,13 @@ export class ActivityTrackingService {
 
       let query = supabase
         .from('user_activities')
-        .gte('created_at', startDate.toISOString())
+        .select('*')
 
       if (userId) {
         query = query.eq('user_id', userId)
       }
+
+      query = query.gte('created_at', startDate.toISOString())
 
       const { data, error } = await query
 
