@@ -38,7 +38,7 @@ export default function LandingPage() {
       }
     }
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: React.MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
