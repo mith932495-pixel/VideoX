@@ -31,13 +31,13 @@ interface ConversionEvent extends ActivityEvent {
 }
 
 export class ActivityTrackingService {
-  private static userId: string | null = null
-  private static sessionId: string | null = null
+  private static userId: string | undefined
+  private static sessionId: string | undefined
 
   // Initialize tracking for user session
   static initialize(userId?: string, sessionId?: string) {
-    this.userId = userId || null
-    this.sessionId = sessionId || null
+    this.userId = userId
+    this.sessionId = sessionId
   }
 
   // Track user activity
